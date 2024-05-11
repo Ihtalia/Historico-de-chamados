@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Chamados</title>
+    <style>
+        /* Estilos básicos para a página */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0; /* Adiciona um fundo claro */
+        }
+        /* Estilo para cada chamado */
+       .chamado {
+            border: 1px solid #ddd; /* Altera a cor da borda para um cinza mais claro */
+            padding: 15px; /* Aumenta o preenchimento para dar mais espaço */
+            margin-bottom: 30px; /* Aumenta o espaço entre os chamados */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Adiciona uma sombra suave para destacar os chamados */
+            background-color: #fff; /* Define um fundo branco para os chamados */
+        }
+       .chamado h3 {
+            margin: 0;
+            color: #333; /* Altera a cor do texto para um cinza escuro */
+        }
+       .chamado p {
+            margin: 5px 0;
+            color: #666; /* Altera a cor do texto para um cinza mais claro */
+        }
+        /* Estilos para o formulário de adição de chamados */
+       .form-group {
+            margin-bottom: 30px; /* Aumenta o espaço entre os grupos de campos */
+        }
+       .form-group label {
+            display: block;
+            margin-bottom: 10px; /* Reduz o espaço abaixo dos rótulos */
+            color: #777; /* Altera a cor do texto dos rótulos para um cinza mais escuro */
+        }
+       .form-group input,
+       .form-group select {
+            width: 100%;
+            padding: 10px; /* Aumenta o preenchimento para maior conforto de digitação */
+            margin-bottom: 20px; /* Aumenta o espaço abaixo dos campos de entrada */
+            border-radius: 5px; /* Arredonda os cantos dos campos de entrada */
+            border: 1px solid #ddd; /* Altera a cor da borda para um cinza mais claro */
+            background-color: #f9f9f9; /* Define um fundo claro para os campos de entrada */
+        }
+       .form-group button {
+            padding: 10px 15px; /* Aumenta o preenchimento e a largura do botão */
+            border-radius: 5px; /* Arredonda os cantos do botão */
+            background-color: #007bff; /* Define uma cor de fundo azul para o botão */
+            color: #fff; /* Define a cor do texto do botão para branco */
+            border: none; /* Remove a borda padrão do botão */
+            cursor: pointer; /* Muda o cursor para um ponteiro quando passa sobre o botão */
+        }
+       .form-group button:hover {
+            background-color: #0056b3; /* Escura a cor de fundo do botão quando passa o mouse */
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Histórico de Chamados</h1>
+    <!-- Div onde os chamados serão exibidos -->
+    <div id="chamados"></div>
+    <!-- Formulário para adicionar novos chamados -->
+    <div class="form-group">
+        <label for="codigo">Código do Chamado:</label>
+        <input type="text" id="codigo" placeholder="Digite o código do chamado">
+    </div>
+    <div class="form-group">
+        <label for="data">Data de Criação:</label>
+        <input type="date" id="data">
+    </div>
+    <div class="form-group">
+        <label for="assunto">Assunto:</label>
+        <input type="text" id="assunto" placeholder="Digite o assunto do chamado">
+    </div>
+    <div class="form-group">
+        <label for="solicitante">Solicitante:</label>
+        <input type="text" id="solicitante" placeholder="Digite o nome do solicitante">
+    </div>
+    <!-- Botão para adicionar um novo chamado -->
+    <button onclick="adicionarChamado()">Adicionar Chamado</button>
+
+    <script>
+        // Função para adicionar um novo chamado à lista
+        function adicionarChamado() {
+            // Coleta os valores dos campos do formulário
+            const codigo = document.getElementById('codigo').value;
+            const data = document.getElementById('data').value;
+            const assunto = document.getElementById('assunto').value;
+            const solicitante = document.getElementById('solicitante').value;
+
+            // Cria um novo bloco de chamado com os valores coletados
+            const chamado = `
+                <div class="chamado">
+                    <h3>Código do Chamado: ${codigo}</h3>
+                    <p>Data de Criação: ${data}</p>
+                    <p>Assunto: ${assunto}</p>
+                    <p>Solicitante: ${solicitante}</p>
+                </div>
+            `;
+
+            // Adiciona o novo chamado à lista de chamados na página
+            document.getElementById('chamados').innerHTML += chamado;
+            
+            // Limpa os campos do formulário para a próxima entrada
+            document.getElementById('codigo').value = '';
+            document.getElementById('data').value = '';
+            document.getElementById('assunto').value = '';
+            document.getElementById('solicitante').value = '';
+        }
+    </script>
+</body>
+</html>
